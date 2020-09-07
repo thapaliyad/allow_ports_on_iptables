@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: COPY IPTABLES script to the hosts
+      copy:
+        src: ./files/iptables
+        dest: /etc/inti.d/iptables
+        force: no
+      backup: yes
+
+    - name: allow UDP ports
+      iptables:
+        chain: input
+        protocol: udp
+        destination_port: "{{ item }}"
+      with_items: "{{ udp_ports_to_allow }}"
+
+    - name: allow tcp ports
+      iptables:
+        chain: input
+        protocol: tcp
+        destination_port: "{{ item }}"
+      with_items: "{{ tcp_ports_to_allow }}"
+
+    - name: save the running iptables rule at {{ saving_path }}
+      shell: "iptables-save >>{{ saving_path }}"
