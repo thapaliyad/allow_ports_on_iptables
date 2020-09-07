@@ -2,12 +2,31 @@
 - hosts: all
   become: yes
   tasks:
-    - name: COPY IPTABLES script to the hosts
-      copy:
-        src: ./files/iptables
-        dest: /etc/inti.d/iptables
-        force: no
-      backup: yes
+
+    - name: install iptables services in CentOS 7
+      yum:
+        name: iptables-services
+        state: present
+        enabled: yes
+      when: ansible_service_mgr == 'systemd'
+    
+    - name: start iptables service in CentOS 7
+      systemd:
+        name: iptables-services
+        state: started
+        daemon_reload: yes
+
+    - name: start iptables service in CentOS 6
+      service:
+        name: iptables
+        state: started        
+     
+    - name: install iptables service in CentOS 6
+      yum:
+        name: iptables
+        state: present
+        enabled: yes
+      when: ansible_service_mgr != 'systemd'
 
     - name: allow UDP ports
       iptables:

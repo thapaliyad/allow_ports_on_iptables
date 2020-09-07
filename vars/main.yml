@@ -1,0 +1,10 @@
+# Please change the value per your need
+
+# allow DHCP
+udp_ports_to_allow: "['67', '68']"
+
+# allow http (encrypted)
+tcp_ports_to_allow: "['443', '8443']"
+
+# save iptables rule permanently
+saving_path: "/etc/sysconfig/iptables"
