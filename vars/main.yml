@@ -3,7 +3,7 @@
 # allow DHCP
 udp_ports_to_allow: "['67', '68']"
 
-# allow http (encrypted)
+# allow http (secure ports)
 tcp_ports_to_allow: "['443', '8443']"
 
 # save iptables rule permanently
