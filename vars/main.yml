@@ -8,3 +8,6 @@ tcp_ports_to_allow: "['443', '8443']"
 
 # save iptables rule permanently
 saving_path: "/etc/sysconfig/iptables"
+# the saving path mentioned above is default iptables saving path. If you want to save the altered rule to some other files,
+# please change this location. But keep in mind that we sould load the rules from the same file after reboot or restarting the service.
+# iptables-restore < /etc/sysconfig/iptables
