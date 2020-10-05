@@ -16,11 +16,6 @@
         state: started
         daemon_reload: yes
 
-    - name: start iptables service in CentOS 6
-      service:
-        name: iptables
-        state: started        
-     
     - name: install iptables service in CentOS 6
       yum:
         name: iptables
@@ -28,6 +23,11 @@
         enabled: yes
       when: ansible_service_mgr != 'systemd'
 
+    - name: start iptables service in CentOS 6
+      service:
+        name: iptables
+        state: started        
+     
     - name: allow UDP ports
       iptables:
         chain: input
