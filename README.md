@@ -9,5 +9,5 @@ DescriptionL Basic ansible playbook which opens additional ports in the Linux (C
 1. clone the git repo (https://github.com/thapaliyad/allow_ports_on_iptables_with_ansible.git)
 2. open vars/main.yml and change the variable values per your need. and 
 3. run the playbook:
-   ansible-playbook -i <inventory-hostname> open-ports-iptables.yml -K
+   ansible-playbook -i '<inventory-hostname>' open-ports-iptables.yml -K
    (provide the become password if prompted)
